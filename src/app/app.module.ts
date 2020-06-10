@@ -11,12 +11,22 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
+import {NzAvatarModule, NzBadgeModule, NzButtonModule} from 'ng-zorro-antd';
+import {NzIconModule} from 'ng-zorro-antd/icon';
+import { AvatarComponent } from './components/avatar/avatar.component';
+import { IconDefinition } from '@ant-design/icons-angular';
+import { DownOutline, NotificationOutline } from '@ant-design/icons-angular/icons';
 
 registerLocaleData(en);
 
+const icons: IconDefinition[] = [ DownOutline, NotificationOutline ];
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderMenuComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +34,11 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NzBadgeModule,
+    NzAvatarModule,
+    NzIconModule.forRoot(icons),
+    NzButtonModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
