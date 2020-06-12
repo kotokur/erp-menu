@@ -12,7 +12,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
-import {NzAvatarModule, NzBadgeModule, NzButtonModule} from 'ng-zorro-antd';
+import {NzAvatarModule, NzBadgeModule, NzButtonModule, NzEmptyModule} from 'ng-zorro-antd';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -48,7 +48,8 @@ const icons: IconDefinition[] = [ DownOutline, NotificationOutline ];
     NzBadgeModule,
     NzAvatarModule,
     NzIconModule.forRoot(icons),
-    NzButtonModule
+    NzButtonModule,
+    NzEmptyModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
