@@ -1,5 +1,21 @@
+@import "variables";
+
 .container {
-  padding: 5px 10px;
+  height: 56px;
+  padding: 0 12px;
+}
+
+.inner-container {
+  border-bottom: 1px solid $main-border-color;
+}
+
+.caption {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.notifications-button {
+  margin: 0 16px;
 }
 
 [nz-icon] {

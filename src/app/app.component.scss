@@ -1,3 +1,6 @@
+@import "variables";
+
 .container {
-  background-color: #f0f8ff;
+  height: 100vh;
+  background-color: $main-background-color;
 }
