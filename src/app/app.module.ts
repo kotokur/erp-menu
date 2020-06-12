@@ -17,6 +17,11 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { IconDefinition } from '@ant-design/icons-angular';
 import { DownOutline, NotificationOutline } from '@ant-design/icons-angular/icons';
+import { ListComponent } from './components/list/list/list.component';
+import { ListPageComponent } from './components/list/list-page/list-page.component';
+import { AddSectionComponent } from './components/add-section/add-section.component';
+import { AddPositionComponent } from './components/add-position/add-position.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 registerLocaleData(en);
 
@@ -26,7 +31,12 @@ const icons: IconDefinition[] = [ DownOutline, NotificationOutline ];
   declarations: [
     AppComponent,
     HeaderMenuComponent,
-    AvatarComponent
+    AvatarComponent,
+    ListComponent,
+    ListPageComponent,
+    AddSectionComponent,
+    AddPositionComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
