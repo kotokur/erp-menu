@@ -20,7 +20,7 @@ import { DownOutline, NotificationOutline, PlusCircleOutline } from '@ant-design
 import { ListComponent } from './components/list/list/list.component';
 import { ListPageComponent } from './components/list/list-page/list-page.component';
 import { AddSectionComponent } from './components/add-section/add-section.component';
-import { AddPositionComponent } from './components/add-position/add-position.component';
+import { AddItemComponent } from './components/add-item/add-item.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AddButtonComponent } from './components/list/add-button/add-button.component';
 
@@ -36,7 +36,7 @@ const icons: IconDefinition[] = [ DownOutline, NotificationOutline, PlusCircleOu
     ListComponent,
     ListPageComponent,
     AddSectionComponent,
-    AddPositionComponent,
+    AddItemComponent,
     PageNotFoundComponent,
     AddButtonComponent
   ],
