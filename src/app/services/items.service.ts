@@ -12,7 +12,7 @@ export class ItemsService {
 
   getItems(): Observable<Array<Item | Section>> {
     return of([]).pipe(
-      delay(500),
+      delay(1000),
       take(1)
     );
   }

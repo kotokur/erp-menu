@@ -1,1 +1,9 @@
-<p>list works!</p>
+<div *ngIf="items?.length > 0; else empty">
+
+</div>
+
+<ng-template #empty>
+  <div class="h-100" fxLayout="column" fxLayoutAlign="center center">
+    <nz-empty nzNotFoundContent="Добавьте в новое меню разделы и позиции"></nz-empty>
+  </div>
+</ng-template>
