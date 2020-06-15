@@ -9,10 +9,10 @@ export interface Section {
   sections: Section[];
 }
 
-function isItem(item: Item | Section): item is Item {
+export function isItem(item: Item | Section): item is Item {
   return (item as Item).sale !== undefined;
 }
 
-function isSection(item: Item | Section): item is Section {
+export function isSection(item: Item | Section): item is Section {
   return (item as Section).items !== undefined;
 }

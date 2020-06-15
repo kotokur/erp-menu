@@ -12,11 +12,18 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
-import {NzAvatarModule, NzBadgeModule, NzButtonModule, NzEmptyModule} from 'ng-zorro-antd';
+import {NzAvatarModule, NzBadgeModule, NzButtonModule, NzDropDownModule, NzEmptyModule, NzTreeModule} from 'ng-zorro-antd';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { IconDefinition } from '@ant-design/icons-angular';
-import { DownOutline, NotificationOutline, PlusCircleOutline } from '@ant-design/icons-angular/icons';
+import {
+  DownOutline,
+  NotificationOutline,
+  PlusCircleOutline,
+  FolderOutline,
+  FolderOpenOutline,
+  FileOutline
+} from '@ant-design/icons-angular/icons';
 import { ListComponent } from './components/list/list/list.component';
 import { ListPageComponent } from './components/list/list-page/list-page.component';
 import { AddSectionComponent } from './components/add-section/add-section.component';
@@ -26,7 +33,14 @@ import { AddButtonComponent } from './components/list/add-button/add-button.comp
 
 registerLocaleData(en);
 
-const icons: IconDefinition[] = [ DownOutline, NotificationOutline, PlusCircleOutline ];
+const icons: IconDefinition[] = [
+  DownOutline,
+  NotificationOutline,
+  PlusCircleOutline,
+  FolderOutline,
+  FolderOpenOutline,
+  FileOutline
+];
 
 @NgModule({
   declarations: [
@@ -51,7 +65,9 @@ const icons: IconDefinition[] = [ DownOutline, NotificationOutline, PlusCircleOu
     NzAvatarModule,
     NzIconModule.forRoot(icons),
     NzButtonModule,
-    NzEmptyModule
+    NzEmptyModule,
+    NzTreeModule,
+    NzDropDownModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
