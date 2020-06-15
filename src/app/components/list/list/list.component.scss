@@ -1,27 +1,21 @@
 nz-tree {
-  overflow: hidden;
-  margin: 0 -24px;
-  padding: 0 24px;
+  background-color: transparent;
 }
 
-.custom-node {
-  cursor: pointer;
-  line-height: 24px;
-  margin-left: 4px;
-  display: inline-block;
+.ant-tree-node-content-wrapper {
+  flex: 1;
 }
 
-.file-name,
-.folder-name {
-  margin-left: 4px;
+.tree-item {
+  height: 48px;
+  background: #FFFFFF;
+  border-radius: 6px;
 }
 
-.file-desc,
-.folder-desc {
-  padding: 0 8px;
-  display: inline-block;
-  background: #87ceff;
-  color: #ffffff;
-  position: relative;
-  left: 12px;
+.tree-title {
+  margin-left: 21px;
+}
+
+.tree-sale {
+  margin-right: 21px;
 }
