@@ -1,9 +1,11 @@
 export interface Item {
+  id: string;
   name: string;
   sale: number;
 }
 
 export interface Section {
+  id: string;
   items: Item[];
   name: string;
   sections: Section[];

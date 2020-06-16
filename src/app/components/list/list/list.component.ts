@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {isItem, isSection, Item, Section} from '../../../model/positions';
+import {isItem, isSection, Item, Section} from '../../../model/items';
 import {NzContextMenuService, NzDropdownMenuComponent, NzFormatEmitEvent, NzTreeNode} from 'ng-zorro-antd';
 
 @Component({
@@ -59,8 +59,7 @@ export class ListComponent implements OnInit {
     return items.map(oneItem => {
       return {
         title: oneItem.name,
-        // TODO Need an id
-        key: oneItem.name,
+        key: oneItem.id,
         sale: isItem(oneItem) ? oneItem.sale : undefined,
         isLeaf: isItem(oneItem) ? true : false,
         children: isSection(oneItem)

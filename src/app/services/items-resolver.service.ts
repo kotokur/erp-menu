@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Item, Section} from '../model/positions';
+import {Item, Section} from '../model/items';
 import {ItemsService} from './items.service';
 import {Observable} from 'rxjs';
 
