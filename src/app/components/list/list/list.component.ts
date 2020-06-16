@@ -11,7 +11,7 @@ export class ListComponent implements OnInit {
   @Input() set items(items: Array<Item | Section>) {
     this.internalItems = items;
     this.treeNodes = this.convertItemsToTreeNodes(items);
-  };
+  }
 
   get items() {
     return this.internalItems;
@@ -30,7 +30,6 @@ export class ListComponent implements OnInit {
   }
 
   openFolder(data: NzTreeNode | NzFormatEmitEvent): void {
-    // do something if u want
     if (data instanceof NzTreeNode) {
       data.isExpanded = !data.isExpanded;
     } else {
@@ -48,6 +47,7 @@ export class ListComponent implements OnInit {
   }
 
   contextMenu($event: MouseEvent, menu: NzDropdownMenuComponent): void {
+    console.log('!!! contextMenu', $event, menu);
     this.nzContextMenuService.create($event, menu);
   }
 
@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
         title: oneItem.name,
         key: oneItem.id,
         sale: isItem(oneItem) ? oneItem.sale : undefined,
-        isLeaf: isItem(oneItem) ? true : false,
+        isLeaf: isItem(oneItem),
         children: isSection(oneItem)
           ? this.convertItemsToTreeNodes((oneItem.items as Array<Item | Section>).concat(oneItem.sections))
           : undefined

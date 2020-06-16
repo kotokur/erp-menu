@@ -22,7 +22,8 @@ import {
   PlusCircleOutline,
   FolderOutline,
   FolderOpenOutline,
-  FileOutline
+  FileOutline,
+  MoreOutline
 } from '@ant-design/icons-angular/icons';
 import { ListComponent } from './components/list/list/list.component';
 import { ListPageComponent } from './components/list/list-page/list-page.component';
@@ -39,7 +40,8 @@ const icons: IconDefinition[] = [
   PlusCircleOutline,
   FolderOutline,
   FolderOpenOutline,
-  FileOutline
+  FileOutline,
+  MoreOutline
 ];
 
 @NgModule({

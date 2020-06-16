@@ -7,11 +7,34 @@
     [nzTreeTemplate]="nzTreeTemplate"
   ></nz-tree>
   <ng-template #nzTreeTemplate let-node let-origin="origin">
-    <div class="tree-item" fxLayout="row" fxLayoutAlign="start center">
-      <div class="tree-folder" *ngIf="!node.isLeaf">
+    <div
+      (contextmenu)="contextMenu($event, menu)"
+      class="tree-item"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+    >
+      <button
+        nz-button
+        nzType="dashed"
+        nzSize="default"
+        nzShape="circle"
+        class="menu-button"
+        nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu"
+      >
+        <i nz-icon nzType="more"></i>
+      </button>
+      <div
+        *ngIf="!node.isLeaf"
+        class="tree-folder"
+      >
         <span class="tree-title">{{node.title}}</span>
       </div>
-      <div *ngIf="node.isLeaf" class="w-100" fxLayout="row" fxLayoutAlign="space-between center">
+      <div
+        *ngIf="node.isLeaf"
+        class="w-100"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
         <span class="tree-title">{{node.title}}</span>
         <span class="tree-sale">{{origin.sale}} ₽</span>
       </div>
