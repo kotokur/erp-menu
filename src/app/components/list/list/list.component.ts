@@ -47,12 +47,23 @@ export class ListComponent implements OnInit {
   }
 
   contextMenu($event: MouseEvent, menu: NzDropdownMenuComponent): void {
-    console.log('!!! contextMenu', $event, menu);
     this.nzContextMenuService.create($event, menu);
   }
 
-  selectDropdown(): void {
-    // do something
+  onAddItem(node) {
+
+  }
+
+  onAddSection(node) {
+
+  }
+
+  onEdit(node) {
+
+  }
+
+  onDelete(node) {
+    console.log('!!! DELETE', node);
   }
 
   private convertItemsToTreeNodes(items: Array<Item | Section>) {

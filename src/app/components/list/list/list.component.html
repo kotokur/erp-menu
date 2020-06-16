@@ -39,13 +39,27 @@
         <span class="tree-sale">{{origin.sale}} ₽</span>
       </div>
     </div>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item (click)="onAddItem(node)">
+          <i nz-icon nzType="plus" nzTheme="outline"></i>
+          Добавить позицию
+        </li>
+        <li nz-menu-item (click)="onAddSection(node)">
+          <i nz-icon nzType="plus" nzTheme="outline"></i>
+          Добавить раздел меню
+        </li>
+        <li nz-menu-item (click)="onEdit(node)">
+          <i nz-icon nzType="edit" nzTheme="outline"></i>
+          Редактировать
+        </li>
+        <li nz-menu-item (click)="onDelete(node)">
+          <i nz-icon nzType="delete" nzTheme="outline"></i>
+          Удалить
+        </li>
+      </ul>
+    </nz-dropdown-menu>
   </ng-template>
-  <nz-dropdown-menu #menu="nzDropdownMenu">
-    <ul nz-menu>
-      <li nz-menu-item (click)="selectDropdown()">Action 1</li>
-      <li nz-menu-item (click)="selectDropdown()">Action 2</li>
-    </ul>
-  </nz-dropdown-menu>
 </div>
 
 <ng-template #empty>
