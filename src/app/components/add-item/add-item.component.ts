@@ -69,6 +69,17 @@ export class AddItemComponent implements OnInit, OnDestroy {
   }
 
   private saveItem() {
-    console.log('!!! SAVE ITEM');
+    const { name, price } = this.itemForm.value;
+    this.loading = true;
+    this.itemsService.saveItem({
+      id: this.item.id,
+      name,
+      sale: price
+    }).pipe(
+      tap(() => {
+        this.router.navigate(['/list']);
+      }),
+      take(1)
+    ).subscribe();
   }
 }

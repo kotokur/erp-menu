@@ -70,6 +70,18 @@ export class AddSectionComponent implements OnInit, OnDestroy {
   }
 
   private saveSection() {
-    console.log('!!! SAVE SECTION');
+    const { name } = this.sectionForm.value;
+    this.loading = true;
+    this.itemsService.saveItem({
+      id: this.section.id,
+      items: this.section.items,
+      sections: this.section.sections,
+      name
+    }).pipe(
+      tap(() => {
+        this.router.navigate(['/list']);
+      }),
+      take(1)
+    ).subscribe();
   }
 }

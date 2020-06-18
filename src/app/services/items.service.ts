@@ -58,6 +58,32 @@ export class ItemsService {
     );
   }
 
+  saveItem(item: Item | Section) {
+    return this.getItems().pipe(
+      tap(items => {
+        this.saveItemMutable(items, item);
+        this.saveItemsToLocalStorage(items);
+      }),
+      take(1)
+    );
+  }
+
+  private saveItemMutable(items: Array<Item | Section>, item: Item | Section) {
+    const foundItem = this.findItemById(items, item.id);
+    if (!foundItem) {
+      return;
+    }
+
+    if (isItem(foundItem) && isItem(item)) {
+      foundItem.name = item.name;
+      foundItem.sale = item.sale;
+    } else if (isSection(foundItem) && isSection(item)) {
+      foundItem.name = item.name;
+      foundItem.items = item.items;
+      foundItem.sections = item.sections;
+    }
+  }
+
   private addItemMutable(items: Array<Item | Section>, id: string | null, newItem: Item | Section) {
     if (!id) {
       items.push(newItem);
