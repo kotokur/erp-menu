@@ -68,6 +68,42 @@ export class ItemsService {
     );
   }
 
+  removeItem(id: string): Observable<Array<Item | Section>> {
+    return this.getItems().pipe(
+      map(items => {
+        return this.filterItems(items, id);
+      }),
+      tap(filteredItems => {
+        this.saveItemsToLocalStorage(filteredItems);
+      }),
+      take(1)
+    );
+  }
+
+  private filterItems(items: Array<Item | Section>, id: string): Array<Item | Section> {
+    return items.filter(oneItem => oneItem.id !== id).map(oneItem => {
+      if (isSection(oneItem)) {
+        return {
+          ...oneItem,
+          items: oneItem.items.filter(item => item.id !== id),
+          sections: this.removeSection(oneItem.sections, id)
+        }
+      } else {
+        return oneItem;
+      }
+    });
+  }
+
+  private removeSection(sections: Array<Section>, id: string): Array<Section> {
+    return sections.filter(oneSection => oneSection.id !== id).map(oneSection => {
+      return {
+        ...oneSection,
+        items: oneSection.items.filter(item => item.id !== id),
+        sections: this.removeSection(oneSection.sections, id)
+      };
+    });
+  };
+
   private saveItemMutable(items: Array<Item | Section>, item: Item | Section) {
     const foundItem = this.findItemById(items, item.id);
     if (!foundItem) {

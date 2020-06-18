@@ -1,7 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {isItem, isSection, Item, Section} from '../../../model/items';
 import {NzContextMenuService, NzDropdownMenuComponent, NzFormatEmitEvent, NzTreeNode} from 'ng-zorro-antd';
 import {Router} from '@angular/router';
+import {ItemsService} from '../../../services/items.service';
+import {take, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'erp-list',
@@ -13,6 +15,7 @@ export class ListComponent implements OnInit {
     this.internalItems = items;
     this.treeNodes = this.convertItemsToTreeNodes(items);
   }
+  @Output() onDelete = new EventEmitter<string>();
 
   get items() {
     return this.internalItems;
@@ -66,8 +69,8 @@ export class ListComponent implements OnInit {
     this.router.navigate([isItem(node.origin) ? 'edit-item' : 'edit-section', node.origin.key]);
   }
 
-  onDelete(node) {
-    console.log('!!! DELETE', node);
+  handleDelete(node) {
+    this.onDelete.emit(node.origin.key);
   }
 
   private convertItemsToTreeNodes(items: Array<Item | Section>) {
