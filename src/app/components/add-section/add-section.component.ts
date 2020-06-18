@@ -30,7 +30,7 @@ export class AddSectionComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.sectionForm = this.fb.group({
-      name: [this.section.name, [Validators.required]],
+      name: [this.section ? this.section.name : null, [Validators.required]],
     });
   }
 

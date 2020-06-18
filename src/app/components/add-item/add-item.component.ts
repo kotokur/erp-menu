@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {Item, Section} from '../../model/items';
+import {Item} from '../../model/items';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -30,8 +30,8 @@ export class AddItemComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.itemForm = this.fb.group({
-      name: [this.item.name, [Validators.required]],
-      price: [this.item.sale, [Validators.required]],
+      name: [this.item ? this.item.name : null, [Validators.required]],
+      price: [this.item ? this.item.sale : null, [Validators.required]],
     });
   }
 
