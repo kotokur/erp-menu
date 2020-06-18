@@ -2,7 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Item, Section} from '../../model/items';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {take, tap} from 'rxjs/operators';
+import {ItemsService} from '../../services/items.service';
 
 @Component({
   selector: 'erp-add-section',
@@ -12,12 +14,15 @@ import {ActivatedRoute} from '@angular/router';
 export class AddSectionComponent implements OnInit, OnDestroy {
   sectionForm: FormGroup;
   section: Section;
+  loading = false;
 
   private routeSubscription: Subscription;
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private itemsService: ItemsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -35,6 +40,11 @@ export class AddSectionComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    if (this.section) {
+      this.saveSection();
+    } else {
+      this.addSection();
+    }
 
   }
 
@@ -42,5 +52,24 @@ export class AddSectionComponent implements OnInit, OnDestroy {
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
+  }
+
+  private addSection() {
+    const { name } = this.sectionForm.value;
+    this.loading = true;
+    this.itemsService.addItemByParentId({
+      name,
+      items: [],
+      sections: []
+    }, this.route.snapshot.params.parentId).pipe(
+      tap(() => {
+        this.router.navigate(['/list']);
+      }),
+      take(1)
+    ).subscribe();
+  }
+
+  private saveSection() {
+    console.log('!!! SAVE SECTION');
   }
 }

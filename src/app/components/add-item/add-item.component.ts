@@ -41,6 +41,20 @@ export class AddItemComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    if (this.item) {
+      this.saveItem();
+    } else {
+      this.addItem();
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
+  }
+
+  private addItem() {
     const { name, price } = this.itemForm.value;
     this.loading = true;
     this.itemsService.addItemByParentId({
@@ -54,9 +68,7 @@ export class AddItemComponent implements OnInit, OnDestroy {
     ).subscribe();
   }
 
-  ngOnDestroy(): void {
-    if (this.routeSubscription) {
-      this.routeSubscription.unsubscribe();
-    }
+  private saveItem() {
+    console.log('!!! SAVE ITEM');
   }
 }

@@ -45,7 +45,7 @@ export class ItemsService {
     );
   }
 
-  addItemByParentId(newItem: Omit<Item, 'id'>, id: string) {
+  addItemByParentId(newItem: Omit<Item, 'id'> | Omit<Section, 'id'>, id: string) {
     return this.getItems().pipe(
       tap(items => {
         this.addItemMutable(items, id, {

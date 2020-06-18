@@ -1,4 +1,4 @@
-<erp-form [headerCaption]="item ? 'Редактировать позицию' : 'Добавить позицию'" [formGroup]="itemForm" (formSubmit)="onSubmit()">
+<erp-form [headerCaption]="item ? 'Редактировать позицию' : 'Добавить позицию'" [loading]="loading" [formGroup]="itemForm" (formSubmit)="onSubmit()">
   <erp-form-control label="Название">
     <input nz-input type="text" formControlName="name">
   </erp-form-control>
