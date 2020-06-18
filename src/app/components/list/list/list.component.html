@@ -41,11 +41,11 @@
     </div>
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu>
-        <li nz-menu-item (click)="onAddItem(node)">
+        <li *ngIf="!node.origin.sale" nz-menu-item (click)="onAddItem(node)">
           <i nz-icon nzType="plus" nzTheme="outline"></i>
           Добавить позицию
         </li>
-        <li nz-menu-item (click)="onAddSection(node)">
+        <li *ngIf="!node.origin.sale" nz-menu-item (click)="onAddSection(node)">
           <i nz-icon nzType="plus" nzTheme="outline"></i>
           Добавить раздел меню
         </li>
