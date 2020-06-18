@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {isItem, isSection, Item, Section} from '../../../model/items';
 import {NzContextMenuService, NzDropdownMenuComponent, NzFormatEmitEvent, NzTreeNode} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'erp-list',
@@ -24,7 +25,10 @@ export class ListComponent implements OnInit {
   // activated node
   activatedNode?: NzTreeNode;
 
-  constructor(private nzContextMenuService: NzContextMenuService) { }
+  constructor(
+    private nzContextMenuService: NzContextMenuService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -51,15 +55,15 @@ export class ListComponent implements OnInit {
   }
 
   onAddItem(node) {
-
+    this.router.navigate(['add-item', node.origin.key]);
   }
 
   onAddSection(node) {
-
+    this.router.navigate(['add-section', node.origin.key]);
   }
 
   onEdit(node) {
-
+    this.router.navigate([isItem(node.origin) ? 'edit-item' : 'edit-section', node.origin.key]);
   }
 
   onDelete(node) {

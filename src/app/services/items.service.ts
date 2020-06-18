@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Item, Section} from '../model/items';
+import {isSection, Item, Section} from '../model/items';
 import {Observable, of} from 'rxjs';
 import {map, take, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
@@ -36,6 +36,35 @@ export class ItemsService {
       }),
       take(1)
     );
+  }
+
+  getItemById(id: string): Observable<Item | Section | null> {
+    return this.getItems().pipe(
+      map(items => this.findItemById(items, id))
+    );
+  }
+
+  private findItemById(items: Array<Item | Section>, id: string): Item | Section | null {
+    const foundInSource = items.find(oneItem => oneItem.id === id);
+    if (foundInSource) {
+      return foundInSource;
+    }
+
+    for (const oneItem of items) {
+      if (isSection(oneItem)) {
+        const foundInItems = this.findItemById(oneItem.items, id);
+        if (foundInItems) {
+          return foundInItems;
+        }
+
+        const foundInSections = this.findItemById(oneItem.sections, id);
+        if (foundInSections) {
+          return foundInSections;
+        }
+      }
+    }
+
+    return null;
   }
 
   private getItemsFromFile(): Observable<Array<Item | Section>> {

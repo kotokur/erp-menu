@@ -5,6 +5,7 @@ import {AddSectionComponent} from './components/add-section/add-section.componen
 import {AddItemComponent} from './components/add-item/add-item.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {ItemsResolverService} from './services/items-resolver.service';
+import {OneItemResolverService} from './services/one-item-resolver.service';
 
 
 const routes: Routes = [
@@ -17,6 +18,22 @@ const routes: Routes = [
   },
   { path: 'add-section', component: AddSectionComponent },
   { path: 'add-item', component: AddItemComponent },
+  { path: 'add-section/:parentId', component: AddSectionComponent },
+  { path: 'add-item/:parentId', component: AddItemComponent },
+  {
+    path: 'edit-section/:id',
+    component: AddSectionComponent,
+    resolve: {
+      section: OneItemResolverService
+    }
+  },
+  {
+    path: 'edit-item/:id',
+    component: AddItemComponent,
+    resolve: {
+      item: OneItemResolverService
+    }
+  },
   { path: '',   redirectTo: '/list', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
