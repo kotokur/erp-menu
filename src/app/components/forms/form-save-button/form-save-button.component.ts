@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class FormSaveButtonComponent implements OnInit {
   @Input() disabled: boolean;
+  @Input() loading = false;
 
   constructor() { }
 

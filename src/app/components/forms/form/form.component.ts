@@ -9,7 +9,8 @@ import {FormGroup} from '@angular/forms';
 export class FormComponent implements OnInit {
   @Input() headerCaption: string;
   @Input() formGroup: FormGroup;
-  @Output() submit = new EventEmitter();
+  @Input() loading = false;
+  @Output() formSubmit = new EventEmitter();
 
   constructor() { }
 
@@ -17,6 +18,6 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submit.emit();
+    this.formSubmit.emit();
   }
 }

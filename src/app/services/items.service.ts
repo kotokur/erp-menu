@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {isSection, Item, Section} from '../model/items';
+import {isItem, isSection, Item, Section} from '../model/items';
 import {Observable, of} from 'rxjs';
 import {map, take, tap} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
@@ -40,8 +40,35 @@ export class ItemsService {
 
   getItemById(id: string): Observable<Item | Section | null> {
     return this.getItems().pipe(
-      map(items => this.findItemById(items, id))
+      map(items => this.findItemById(items, id)),
+      take(1)
     );
+  }
+
+  addItemByParentId(newItem: Omit<Item, 'id'>, id: string) {
+    return this.getItems().pipe(
+      tap(items => {
+        this.addItemMutable(items, id, {
+          ...newItem,
+          id: Guid.create().toString()
+        });
+        this.saveItemsToLocalStorage(items);
+      }),
+      take(1)
+    );
+  }
+
+  private addItemMutable(items: Array<Item | Section>, id: string | null, newItem: Item | Section) {
+    const parent = this.findItemById(items, id);
+    if (!parent || !isSection(parent)) {
+      return;
+    }
+
+    if (isItem(newItem)) {
+      parent.items.push(newItem);
+    } else {
+      parent.sections.push(newItem);
+    }
   }
 
   private findItemById(items: Array<Item | Section>, id: string): Item | Section | null {
