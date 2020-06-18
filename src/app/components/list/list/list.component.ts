@@ -15,7 +15,6 @@ export class ListComponent implements OnInit {
     this.internalItems = items;
     this.treeNodes = this.convertItemsToTreeNodes(items);
   }
-  @Output() onDelete = new EventEmitter<string>();
 
   get items() {
     return this.internalItems;
@@ -30,7 +29,8 @@ export class ListComponent implements OnInit {
 
   constructor(
     private nzContextMenuService: NzContextMenuService,
-    private router: Router
+    private router: Router,
+    private itemsService: ItemsService
   ) { }
 
   ngOnInit(): void {
@@ -70,7 +70,16 @@ export class ListComponent implements OnInit {
   }
 
   handleDelete(node) {
-    this.onDelete.emit(node.origin.key);
+    this.itemsService.removeItem(node.origin.key).pipe(
+      tap(() => {
+        if (node.parentNode) {
+          node.remove();
+        } else {
+          this.treeNodes = this.treeNodes.filter(treeNode => treeNode.key !== node.key);
+        }
+      }),
+      take(1)
+    ).subscribe();
   }
 
   private convertItemsToTreeNodes(items: Array<Item | Section>) {

@@ -2,8 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Item, Section} from '../../../model/items';
 import {Subscription} from 'rxjs';
-import {take, tap} from 'rxjs/operators';
-import {ItemsService} from '../../../services/items.service';
 
 @Component({
   selector: 'erp-list-page',
@@ -16,8 +14,7 @@ export class ListPageComponent implements OnInit, OnDestroy {
   private routeSubscription: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
-    private itemsService: ItemsService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -32,15 +29,4 @@ export class ListPageComponent implements OnInit, OnDestroy {
       this.routeSubscription.unsubscribe();
     }
   }
-
-  handleDelete(id: string) {
-    this.itemsService.removeItem(id).pipe(
-      tap((filteredItems) => {
-        this.items = filteredItems;
-        console.log('!!! FILTERED ITEMS 1', this.items);
-      }),
-      take(1)
-    ).subscribe();
-  }
-
 }
