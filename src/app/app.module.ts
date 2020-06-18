@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -12,7 +12,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
-import {NzAvatarModule, NzBadgeModule, NzButtonModule, NzDropDownModule, NzEmptyModule, NzTreeModule} from 'ng-zorro-antd';
+import {NzAvatarModule, NzBadgeModule, NzButtonModule, NzDropDownModule, NzEmptyModule, NzFormModule, NzTreeModule} from 'ng-zorro-antd';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -34,6 +34,10 @@ import { AddSectionComponent } from './components/add-section/add-section.compon
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AddButtonComponent } from './components/list/add-button/add-button.component';
+import { FormControlComponent } from './components/forms/form-control/form-control.component';
+import { AddFormHeaderComponent } from './components/forms/add-form-header/add-form-header.component';
+import { FormSaveButtonComponent } from './components/forms/form-save-button/form-save-button.component';
+import { FormComponent } from './components/forms/form/form.component';
 
 registerLocaleData(en);
 
@@ -60,7 +64,11 @@ const icons: IconDefinition[] = [
     AddSectionComponent,
     AddItemComponent,
     PageNotFoundComponent,
-    AddButtonComponent
+    AddButtonComponent,
+    FormControlComponent,
+    AddFormHeaderComponent,
+    FormSaveButtonComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +83,9 @@ const icons: IconDefinition[] = [
     NzButtonModule,
     NzEmptyModule,
     NzTreeModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzFormModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

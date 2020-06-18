@@ -1,0 +1,9 @@
+<div fxLayout="column" class="h-100">
+  <erp-add-form-header [caption]="headerCaption"></erp-add-form-header>
+  <form class="form" [formGroup]="formGroup" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="space-between stretch" fxFlex>
+    <div fxFlex class="form-body">
+      <ng-content></ng-content>
+    </div>
+    <erp-form-save-button [disabled]="!formGroup.valid"></erp-form-save-button>
+  </form>
+</div>

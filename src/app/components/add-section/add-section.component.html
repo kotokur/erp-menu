@@ -1,1 +1,5 @@
-<p>add-section works!</p>
+<erp-form headerCaption="Добавить раздел" [formGroup]="sectionForm" (submit)="onSubmit()">
+  <erp-form-control label="Название">
+    <input nz-input type="text" formControlName="name">
+  </erp-form-control>
+</erp-form>
