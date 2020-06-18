@@ -59,6 +59,11 @@ export class ItemsService {
   }
 
   private addItemMutable(items: Array<Item | Section>, id: string | null, newItem: Item | Section) {
+    if (!id) {
+      items.push(newItem);
+      return;
+    }
+
     const parent = this.findItemById(items, id);
     if (!parent || !isSection(parent)) {
       return;
