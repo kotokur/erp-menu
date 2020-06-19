@@ -3,6 +3,14 @@
     <input nz-input type="text" formControlName="name">
   </erp-form-control>
   <erp-form-control label="Цена">
-    <input nz-input type="text" formControlName="price">
+    <nz-input-number
+      formControlName="price"
+      [nzMin]="0"
+      [nzMax]="9999999"
+      [nzPrecision]="2"
+      [nzFormatter]="formatterRuble"
+      [nzParser]="parserRuble"
+      [nzPlaceHolder]="'Digital'"
+    ></nz-input-number>
   </erp-form-control>
 </erp-form>

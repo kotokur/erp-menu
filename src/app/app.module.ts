@@ -12,7 +12,16 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
-import {NzAvatarModule, NzBadgeModule, NzButtonModule, NzDropDownModule, NzEmptyModule, NzFormModule, NzTreeModule} from 'ng-zorro-antd';
+import {
+  NzAvatarModule,
+  NzBadgeModule,
+  NzButtonModule,
+  NzDropDownModule,
+  NzEmptyModule,
+  NzFormModule,
+  NzInputNumberModule,
+  NzTreeModule
+} from 'ng-zorro-antd';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { IconDefinition } from '@ant-design/icons-angular';
@@ -85,7 +94,8 @@ const icons: IconDefinition[] = [
     NzTreeModule,
     NzDropDownModule,
     NzFormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NzInputNumberModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

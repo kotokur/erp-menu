@@ -15,6 +15,8 @@ export class AddItemComponent implements OnInit, OnDestroy {
   itemForm: FormGroup;
   item: Item;
   loading = false;
+  formatterRuble = (value: number) => `₽ ${value}`;
+  parserRuble = (value: string) => value.replace('₽ ', '');
 
   private routeSubscription: Subscription;
 
@@ -36,7 +38,7 @@ export class AddItemComponent implements OnInit, OnDestroy {
   initForm() {
     this.itemForm = this.fb.group({
       name: [this.item ? this.item.name : null, [Validators.required]],
-      price: [this.item ? this.item.sale : null, [Validators.required]],
+      price: [this.item ? this.item.sale : 0, [Validators.required]],
     });
   }
 
