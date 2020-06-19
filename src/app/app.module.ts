@@ -17,9 +17,7 @@ import {
   NzBadgeModule,
   NzButtonModule,
   NzDropDownModule,
-  NzEmptyModule,
-  NzFormModule,
-  NzInputNumberModule,
+  NzEmptyModule, NzInputNumberModule,
   NzTreeModule
 } from 'ng-zorro-antd';
 import {NzIconModule} from 'ng-zorro-antd/icon';
@@ -43,10 +41,7 @@ import { AddSectionComponent } from './components/add-section/add-section.compon
 import { AddItemComponent } from './components/add-item/add-item.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AddButtonComponent } from './components/list/add-button/add-button.component';
-import { FormControlComponent } from './components/forms/form-control/form-control.component';
-import { AddFormHeaderComponent } from './components/forms/add-form-header/add-form-header.component';
-import { FormSaveButtonComponent } from './components/forms/form-save-button/form-save-button.component';
-import { FormComponent } from './components/forms/form/form.component';
+import {ErpFormsModule} from './libs/erp-forms/erp-forms.module';
 
 registerLocaleData(en);
 
@@ -74,15 +69,12 @@ const icons: IconDefinition[] = [
     AddItemComponent,
     PageNotFoundComponent,
     AddButtonComponent,
-    FormControlComponent,
-    AddFormHeaderComponent,
-    FormSaveButtonComponent,
-    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -93,9 +85,8 @@ const icons: IconDefinition[] = [
     NzEmptyModule,
     NzTreeModule,
     NzDropDownModule,
-    NzFormModule,
-    ReactiveFormsModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    ErpFormsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
